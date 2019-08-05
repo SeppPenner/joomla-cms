@@ -22,12 +22,14 @@ init:
   - SET COMPOSER_NO_INTERACTION=1
   - SET PHP=1 # This var relates to caching the php  install
   - SET ANSICON=121x90 (121x90)
-  - ps: $my_variable = choco search php --exact --all-versions -r | select-string -pattern $env:php_ver_target
 services:
   - mssql2014
   - mysql
   - postgresql94
   - iis
+
+install:
+  - ps: $my_variable = choco search php --exact --all-versions -r | select-string -pattern $env:php_ver_target
 
 test_script:
   - ps: Write-Host "This is $my_variable"
