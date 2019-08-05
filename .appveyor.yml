@@ -29,8 +29,9 @@ services:
   - iis
 
 install:
-  - ps: $my_variable = choco search php --all-versions --exact --debug
+  - ps: choco feature disable -n usePackageRepositoryOptimizations
+  - ps: $debug_info = choco search php --all-versions --exact --debug
 
 test_script:
-  - ps: Write-Host "This is $my_variable"
+  - ps: Write-Host "$debug_info"
   - cd C:\projects\joomla-cms
