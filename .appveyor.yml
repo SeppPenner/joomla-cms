@@ -29,7 +29,7 @@ services:
   - iis
 
 install:
-  - ps: $my_variable = choco search php --all-versions
+  - ps: $my_variable = choco search php --all-versions --exact --debug
 
 test_script:
   - ps: Write-Host "This is $my_variable"
