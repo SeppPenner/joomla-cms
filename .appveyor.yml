@@ -33,6 +33,7 @@ install:
     - IF EXIST C:\tools\php (SET PHP=0)
     - ps: >-
         If ($env:PHP -eq "1") {
+          choco search php --exact --all-versions -r | select-string -pattern $env:php_ver_target
           appveyor-retry cinst --params '""/InstallDir:C:\tools\php""' --ignore-checksums -y php --version ((choco search php --exact --all-versions -r | select-string -pattern $env:php_ver_target | sort { [version]($_ -split '\|' | select -last 1) } -Descending | Select-Object -first 1) -replace '[php|]','')
         }
     - appveyor-retry cinst -y sqlite
